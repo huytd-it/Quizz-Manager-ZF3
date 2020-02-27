@@ -12,6 +12,10 @@
  * file.
  */
 
+use Laminas\Session\Storage\SessionArrayStorage;
+use Laminas\Session\Validator\HttpUserAgent;
+use Laminas\Session\Validator\RemoteAddr;
+
 return [
     'db' => [
         'driver' => 'Pdo',
@@ -44,5 +48,20 @@ return [
             ],
         ],
     ],
-  
+    'session_config' => [
+        'cookie_lifetime' => 3600,
+        'gc_maxlifetime' => 2 * 3600,
+
+    ],
+    'session_manager' => [
+        'validators' => [
+            RemoteAddr::class,
+            HttpUserAgent::class,
+        ],
+
+    ],
+    'session_storage' => [
+        'type' => SessionArrayStorage::class,
+    ]
+
 ];
