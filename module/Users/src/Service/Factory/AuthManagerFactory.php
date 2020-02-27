@@ -14,6 +14,14 @@ class AuthManagerFactory implements FactoryInterface
         $authencationService = $container->get(AuthenticationService::class);
         $sessionManager = $container->get(SessionManager::class);
       
-        return new AuthManager($authencationService,$sessionManager);
+        $config = $container->get('Config');
+        if(isset($config['access_filter'])){
+            $config = $config['access_filter'];
+
+        }
+        else{
+            $config = [];
+        }
+        return new AuthManager($authencationService,$sessionManager,$config);
     }
 }

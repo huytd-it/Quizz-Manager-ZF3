@@ -16,6 +16,7 @@ use Laminas\Router\Http\Literal;
 use Laminas\Router\Http\Segment;
 use Laminas\ServiceManager\Factory\InvokableFactory;
 
+
 // use Zend\ServiceManager\Factory\InvokableFactory;
 
 return [
@@ -58,6 +59,16 @@ return [
                     'defaults' => [
                         'controller' => Controller\AuthController::class,
                         'action'     => 'login',
+                    ],
+                ],
+            ],
+            'logout' => [
+                'type'    => Segment::class,
+                'options' => [
+                    'route'    => '/logout',
+                    'defaults' => [
+                        'controller' => Controller\AuthController::class,
+                        'action'     => 'logout',
                     ],
                 ],
             ],
@@ -108,6 +119,26 @@ return [
             Service\AuthAdapter::class => Service\Factory\AuthAdapterFactory::class,
             AuthenticationService::class => Service\Factory\AuthenticationServiceFactory::class,
         ]
+    ],
+    'access_filter' => [
+        'controllers' => [
+            Controller\UserController::class => [
+                //truy cập khi chưa đăng nhập
+                [
+                    'actions' => ['resetPassword', 'setPassword'],
+                    'allow' => "all",
+                ],
+                //phải đăng nhập
+                [
+                    'actions' => ['index', 'add', 'edit', 'delete', 'changePassword'],
+                    'allow' => "limit"
+                ]
+            ],
+           
+        ]
+
     ]
+
+
 
 ];

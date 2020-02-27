@@ -35,7 +35,7 @@ class AuthAdapter implements AdapterInterface
     public function authenticate()
     {
         $user = $this->entityManager->getRepository(Users::class)
-            ->findOneByUsername($this->username);
+            ->findOneBy(['ten_dang_nhap' => $this->username]);
         if (!$user) {
             return new Result(
                 Result::FAILURE_IDENTITY_NOT_FOUND,

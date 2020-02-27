@@ -7,6 +7,11 @@
 
 namespace Users;
 
+use Laminas\Mvc\Controller\AbstractActionController;
+use Laminas\Mvc\MvcEvent;
+use Users\Controller\AuthController;
+use Users\Service\AuthManager;
+
 
 class Module
 {
@@ -25,5 +30,23 @@ class Module
                ],
             ],
         ];
+    }
+    public function onBootstrap(MvcEvent $event)
+    {
+        $eventManager = $event->getApplication()->getEventManager();
+        $shareEventManager =  $eventManager->getSharedManager();
+        $shareEventManager->attach(AbstractActionController::class, MvcEvent::EVENT_DISPATCH,[$this,'onDispatch'],100);
+
+    }
+    public function onDispatch(MvcEvent $event)
+    {
+       $controllerName = $event->getRouteMatch()->getParam('controller',null);
+       $actionName = $event->getRouteMatch()->getParam('action',null);
+       $authManager = $event->getApplication()->getServiceManager()->get(AuthManager::class);
+
+       if(!$authManager->filterAccess($controllerName,$actionName)&& $controllerName != AuthController::class){
+           $controller  = $event->getTarget();
+           return $controller->redirect()->toRoute('login');    
+       }
     }
 }

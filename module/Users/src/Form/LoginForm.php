@@ -39,7 +39,7 @@ class LoginForm extends Form
                 'label' => 'Tên người chơi',
                 'label_attributes' => [
                     'for' => 'ten_dang_nhap',
-                    'class' => 'col-md-3 control-label'
+                    'class' => 'col-md-12 control-label'
                 ],
 
             ]
@@ -57,7 +57,7 @@ class LoginForm extends Form
                 'label' => 'Mật khẩu',
                 'label_attributes' => [
                     'for' => 'ten_dang_nhap',
-                    'class' => 'col-md-3 control-label'
+                    'class' => 'col-md-12 control-label'
                 ],
 
             ]
@@ -67,14 +67,13 @@ class LoginForm extends Form
             'type' => Element\Checkbox::class,
             'name' => 'ghi_nho',
             'attributes' => [
-                
                 'id' => 'ghi_nho'
             ],
             'options' => [
                 'label' => 'Remember me',
                 'label_attributes' => [
                     'for' => 'ghi_nho',
-                    'class' => 'col-md-3 control-label',
+                    'class' => 'col-md-12 control-label',
                 ]
             ]
         ]);
@@ -160,7 +159,7 @@ class LoginForm extends Form
                         'max' => 20,
                         'messages' => [
                             StringLength::TOO_SHORT => 'Mật khẩu ít nhất %min% kí tự',
-                            StringLength::TOO_LONG => 'Mật khẩu nhiều nhất %min% kí tự',
+                            StringLength::TOO_LONG => 'Mật khẩu nhiều nhất %max% kí tự',
 
                         ]
                     ]
