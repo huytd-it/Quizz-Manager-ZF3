@@ -1,0 +1,66 @@
+<?php
+$title = "Danh sách User";
+$this->headTitle($title);
+
+?>
+<h2><?= $this->flashMessenger()->render('success', ['alert', 'alert-success']) ?></h2>
+<div class="card">
+    <div class="card-header"><?= $this->escapeHtml($title) ?></div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Hình đại diện </th>
+                        <th>Tên đăng nhập</th>
+                        <th>Email</th>
+                        <th>Điểm cao nhất</th>
+                        <th>Số credit</th>
+                        <th>Trạng thái</th>
+                        <th>Xóa/Sữa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $i = 0;
+                    foreach ($users as $user) {
+                        $i++; ?>
+                        <tr>
+                            <td><?= $i ?></td>
+                            <td><img src="<?=RESOURCE_LINK."/img/".$this->escapeHtml($user->getHinhDaiDien()) ?>" width="50"></td>
+                            <td><?= $this->escapeHtml($user->getTenDangNhap()) ?></td>
+                            <td><?= $this->escapeHtml($user->getEmail()) ?></td>
+                            <td><?= $this->escapeHtml($user->getDiemCaoNhat()) ?></td>
+                            <td><?= $this->escapeHtml($user->getCredit()) ?></td>
+                            <td><?= $this->escapeHtml($user->getTrangThai()) ?></td>
+                            <td>
+
+                                <a class="btn btn-info" href="<?= $this->url('users', [
+                                                                    'controller' => 'UserController', 'action' => 'edit',
+                                                                    'id' => $this->escapeHtml($user->getId())
+                                                                ]) ?>" role="button">Sữa</a>
+                                <a class="btn btn-danger" href="<?= $this->url('users', [
+                                                                    'controller' => 'UserController', 'action' => 'delete',
+                                                                    'id' => $this->escapeHtml($user->getId())
+                                                                ]) ?>" role="button">xóa</a>
+                                <hr>
+                                <a class="btn btn-warning" href="<?= $this->url('users', [
+                                                                        'controller' => 'UserController', 'action' => 'change-password',
+                                                                        'id' => $this->escapeHtml($user->getId())
+                                                                    ]) ?>" role="button">Đổi mật khẩu</a>
+                            </td>
+                        </tr>
+                    <?php
+                    } ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer">
+
+        <a class="btn btn-info" href="<?= $this->url('users', ['controller' => 'UserController', 'action' => 'add']) ?>" role="button">
+            Thêm người dùng</a>
+
+    </div>
+</div>

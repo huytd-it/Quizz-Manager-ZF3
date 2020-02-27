@@ -1,0 +1,49 @@
+<?php
+
+
+
+$title = "Danh sách câu hỏi";
+$this->headTitle($title);
+?>
+<div class='card'>
+    <div class="card-header">
+        <div class='btn-group'>
+            <a href='<?= $this->url('question', ['controller' => 'QuestionController', 'action' => 'add']) ?>'><button class='btn btn-outline-info'>Thêm câu hỏi</button></a>
+        </div>
+    </div>
+    <?=$this->flashMessenger()->render('success',['alert','alert-success'])?>
+    <div class="card-body">
+        <div class="card-title">
+            <h1><?= $this->escapeHtml($title) ?></h1>
+        </div>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Mã câu hỏi</th>
+                    <th>Lĩnh vực</th>
+                    <th>Nội dung</th>
+                    <th>Đáp án</th>
+                    <th>Tùy chỉnh</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+
+                foreach ($question as $row) { ?>
+                    <tr>
+                        <td><?= $row['ma_cau_hoi'] ?></td>
+                        <td><?= $row['linh_vuc'] ?></td>
+                        <td><?= $row['content'] ?></td>
+                        <td><?= $row['answer'] ?></td>
+                        <td>
+                            <button class='btn btn-outline-warning'>Xóa</button>
+                            <button class='btn btn-outline-secondary'>Edit</button>
+                        </td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+
+</div>

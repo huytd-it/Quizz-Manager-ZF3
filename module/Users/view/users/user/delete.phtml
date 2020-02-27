@@ -1,0 +1,8 @@
+<?php $this->headTitle('Delete User')?>
+<h2> Bạn có muốn xóa user [<?=$user->getTenDangNhap()?>] ?
+</br> Email: [<?= $user->getEmail() ?>]
+</h2>
+<form action="" method="POST">
+    <input type="submit" name="delete" value="No" class="btn btn-default">
+    <input type="submit" name="delete" value="Yes" class="btn btn-info">
+</form>

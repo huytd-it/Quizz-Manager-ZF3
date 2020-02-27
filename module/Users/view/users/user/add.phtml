@@ -1,0 +1,71 @@
+<?php
+$title = "Thêm User";
+$this->headTitle($title);
+$form->prepare();
+?>
+
+<h1><?= $this->escapeHtml($title) ?></h1>
+<hr>
+<?= $this->form()->openTag($form) ?>
+
+<div class="form-group">
+    <?= $this->formLabel($form->get('ten_dang_nhap')); ?>
+    <div class="col-sm-9">
+        <?= $this->formElement($form->get('ten_dang_nhap')); ?>
+        <?= $this->formElementErrors($form->get('ten_dang_nhap')); ?>
+    </div>
+</div>
+<div class="form-group">
+    <?= $this->formLabel($form->get('mat_khau')); ?>
+    <div class="col-sm-9">
+        <?= $this->formElement($form->get('mat_khau')); ?>
+        <?= $this->formElementErrors($form->get('mat_khau')); ?>
+    </div>
+</div>
+<div class="form-group">
+    <?= $this->formLabel($form->get('confirm_password')); ?>
+    <div class="col-sm-9">
+        <?= $this->formElement($form->get('confirm_password')); ?>
+        <?= $this->formElementErrors($form->get('confirm_password')); ?>
+    </div>
+</div>
+<div class="form-group">
+    <?= $this->formLabel($form->get('email')); ?>
+    <div class="col-sm-9">
+        <?= $this->formElement($form->get('email')); ?>
+        <?= $this->formElementErrors($form->get('email')); ?>
+    </div>
+</div>
+<div class="form-group">
+    <?= $this->formLabel($form->get('diem_cao_nhat')); ?>
+    <div class="col-sm-9">
+        <?= $this->formElement($form->get('diem_cao_nhat')); ?>
+    </div>
+</div>
+<div class="form-group">
+    <?= $this->formLabel($form->get('credit')); ?>
+    <div class="col-sm-9">
+        <?= $this->formElement($form->get('credit')); ?>
+    </div>
+</div>
+<div class="form-group">
+    <?= $this->formLabel($form->get('hinh_dai_dien')); ?>
+    <div class="col-sm-9">
+        <?= $this->formElement($form->get('hinh_dai_dien')); ?>
+    </div>
+</div>
+<div class="form-group">
+    <?= $this->formLabel($form->get('trang_thai')); ?>
+    <div class="col-sm-9">
+        <?= $this->formElement($form->get('trang_thai')); ?>
+    </div>
+</div>
+
+<div class="form-group">
+   
+    <div class="col-sm-9">
+        <?= $this->formElement($form->get('btnSubmit')); ?>
+    </div>
+</div>
+
+<?= $this->form()->openTag($form) ?>
